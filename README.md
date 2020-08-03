@@ -7,6 +7,8 @@
 
 *Update 10/13/19:* Setting up the TensorFlow Object Detection API on the Pi is much easier now! Two major updates: 1) TensorFlow can be installed simply using "pip3 install tensorflow". 2) The protobuf compiler (protoc) can be installed using "sudo apt-get protobuf-compiler. I have updated Step 3 and Step 4 to reflect these changes.
 
+*Update 4/8/2020:* Uses workaround, and currently uses deprecated MobileNET SSDLite, pls upgrate later :D
+
 Bonus: I made a Pet Detector program (Pet_detector.py) that sends me a text when it detects when my cat wants to be let outside! It runs on the Raspberry Pi and uses the TensorFlow Object Detection API. You can use the code as an example for your own object detection applications. More info is available at [the bottom of this readme](https://github.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi#bonus-pet-detector).
 
 ## Introduction
@@ -145,15 +147,15 @@ If you’re using a Picamera, make sure it is enabled in the Raspberry Pi config
 
 Download the Object_detection_picamera.py file into the object_detection directory by issuing:
 ```
-wget https://raw.githubusercontent.com/EdjeElectronics/TensorFlow-Object-Detection-on-the-Raspberry-Pi/master/Object_detection_picamera.py
+wget https://raw.githubusercontent.com/Rizky92/TensorFlow-Object-Detection-on-the-Raspberry-Pi/master/Object_detection_picamera.py
 ```
 Run the script by issuing: 
 ```
-python3 Object_detection_picamera.py 
+LD_PRELOAD=/usr/lib/arm-linux-gnueabihf/libatomic.so.1 python3.7 Object_detection_picamera.py
 ```
 The script defaults to using an attached Picamera. If you have a USB webcam instead, add --usbcam to the end of the command:
 ```
-python3 Object_detection_picamera.py --usbcam
+LD_PRELOAD=/usr/lib/arm-linux-gnueabihf/libatomic.so.1 python3.7 Object_detection_picamera.py --usbcam
 ```
 Once the script initializes (which can take up to 30 seconds), you will see a window showing a live view from your camera. Common objects inside the view will be identified and have a rectangle drawn around them. 
 
